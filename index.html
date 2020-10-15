@@ -63,17 +63,17 @@
   // 返回一个新的函数，会调用fn,并传入this和其他参数
 
 
-  var apply = Function.prototype.apply
-  // apply.call是什么意思
-
-  var f1 = function(){
-    console.log('this')
-    console.log(this)
-    console.log('arguments')
-    console.log(arguments)
-    console.log('------')
-  }
-  f1.apply({name:'frank'}[1,2,3])
+  // var apply = Function.prototype.apply
+  // // apply.call是什么意思
+  //
+  // var f1 = function(){
+  //   console.log('this')
+  //   console.log(this)
+  //   console.log('arguments')
+  //   console.log(arguments)
+  //   console.log('------')
+  // }
+  // f1.apply({name:'frank'}[1,2,3])
   // 公式
   // obj.method(a,b,c,d,e)
   // obj.method.call(obj,a,b,c,d,e)
@@ -90,4 +90,39 @@
   // apply.call(f1,   {name:'frank'},[1,2,3])
   // 总结apply直接调用一个新的函数f1,不会返回一个新的函数，bind会返回一个新的函数
   // 把参数 {name:'frank'}作为this,把数组[1,2,3]展开
+
+  // -------
+  var call = Function.prototype.call
+  // call.call是什么意思
+
+  var f1 = function(){
+    console.log('this')
+    console.log(this)
+    console.log('arguments')
+    console.log(arguments)
+    console.log('------')
+  }
+  f1.call({name:'frank'}, 1,2,3)
+  // 公式
+  // obj.method(a,b,c,d,e)
+  // obj.method.call(obj,a,b,c,d,e)
+  // 设obj=f1
+  // 设method = call
+  // 代入
+  // f1.call(a,b,c,d)
+  // f1.call.call(f1,a,b,c,d)
+  // 代入参数
+  // 设 a = {name:'frank'}
+  // b,c,d = 1,2,3
+  // f1.call({name:'frank'},1,2,3) // 这个式子
+  // f1.call.call(f1,   {name:'frank'},1,2,3)
+
+  // f1.call === Function.prototype.call
+  // call === Function.protyotype.call
+
+  // call.call(f1,   {name:'frank'},1,2,3)
+  // 意思就是call(f1,   {name:'frank'},1,2,3)
+  // 调用f1，this是f1，后面的参数就是1,2,3,返回值直接是一个结果
+
+
 </script>
