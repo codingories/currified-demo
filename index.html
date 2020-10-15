@@ -27,16 +27,16 @@
   // console.log(newAddThree(1)(2)(3)) // 6
 
   // -------
-  var bind = Function.prototype.bind
-  var f1 = function(){
-    console.log('this')
-    console.log(this)
-    console.log('arguments')
-    console.log(arguments)
-    console.log('------')
-  }
-  var newF1 = f1.bind({name:'frank'},1,2,3)
-  console.log(newF1())
+  // var bind = Function.prototype.bind
+  // var f1 = function(){
+  //   console.log('this')
+  //   console.log(this)
+  //   console.log('arguments')
+  //   console.log(arguments)
+  //   console.log('------')
+  // }
+  // var newF1 = f1.bind({name:'frank'},1,2,3)
+  // console.log(newF1())
 
   // 公式
   // obj.method(a,b,c,d,e)
@@ -61,4 +61,33 @@
   // 结论
   // bind.call 接受一个函数fn,this,其他参数
   // 返回一个新的函数，会调用fn,并传入this和其他参数
+
+
+  var apply = Function.prototype.apply
+  // apply.call是什么意思
+
+  var f1 = function(){
+    console.log('this')
+    console.log(this)
+    console.log('arguments')
+    console.log(arguments)
+    console.log('------')
+  }
+  f1.apply({name:'frank'}[1,2,3])
+  // 公式
+  // obj.method(a,b,c,d,e)
+  // obj.method.call(obj,a,b,c,d,e)
+  // 设obj=f1
+  // 设method = apply
+  // 代入
+  // f1.apply(a,b,c,d,e)
+  // f1.apply.call(f1,a,b,c,d,e)
+  // 代入参数
+  // 设 a = {name:'frank'}
+  // b = [1,2,3]
+  // f1.apply({name:'frank'},[1,2,3]) // 这个式子
+  // f1.apply.call(f1,   {name:'frank'},[1,2,3])
+  // apply.call(f1,   {name:'frank'},[1,2,3])
+  // 总结apply直接调用一个新的函数f1,不会返回一个新的函数，bind会返回一个新的函数
+  // 把参数 {name:'frank'}作为this,把数组[1,2,3]展开
 </script>
