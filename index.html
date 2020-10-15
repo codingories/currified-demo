@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <h3>hi</h3>
+</body>
+</html>
+<script>
+  // addTwo = (a,b)=> a+b
+  // addThree = (a,b,c) => a + b + c
+  // currify = (fn, params = [])=>{
+  //   return (arg)=>{
+  //     const newParams = params.concat(arg)
+  //     if(newParams.length===fn.length){
+  //       return fn(...newParams)
+  //     }else{
+  //       return currify(fn, newParams)
+  //     }
+  //   }
+  // }
+  // newAddTwo = currify(addTwo)
+  // console.log(newAddTwo(1)(2)) // 3
+  // newAddThree = currify(addThree)
+  // console.log(newAddThree(1)(2)(3)) // 6
+
+  // -------
+  var bind = Function.prototype.bind
+  var f1 = function(){
+    console.log('this')
+    console.log(this)
+    console.log('arguments')
+    console.log(arguments)
+    console.log('------')
+  }
+  var newF1 = f1.bind({name:'frank'},1,2,3)
+  console.log(newF1())
+
+  // 公式
+  // obj.method(a,b,c,d,e)
+  // obj.method.call(obj,a,b,c,d,e)
+
+  // 设obj=f1
+  // 设method = bind
+  // 代入
+  // f1.bind(a,b,c,d,e)
+  // f1.bind.call(f1,a,b,c,d,e)
+  // 代入参数
+  // a = {name:'frank'}
+  // b,c,d = 1,2,3
+  // f1.bind({name:'frank'},1,2,3)
+  // f1.bind.call(f1, {name:'frank'},1,2,3)
+  // 参数意思 => f1 this={name:'frank'} arguments=[1,2,3]
+
+  // f1.bind === Function.prototype.bind
+  // var bind = Function.prototype.bind
+  // 所以 f1.bind 就是 bind
+  // bind.call(f1,{name:'frank'},1,2,3) // 这个式子
+  // 结论
+  // bind.call 接受一个函数fn,this,其他参数
+  // 返回一个新的函数，会调用fn,并传入this和其他参数
+</script>
